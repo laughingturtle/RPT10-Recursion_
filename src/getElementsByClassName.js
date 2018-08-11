@@ -4,7 +4,16 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-) {
-  // your code here
+const getElementsByClassName = function(className, node = document.body) {
+  let container = [];
+
+  if ([].indexOf.call(node.classList, className) !== -1){
+      container.push(node);
+  }
+
+  for (let child of node.children){
+    container = container.concat(getElementsByClassName(className, child));
+    }
+
+  return container;
 };
